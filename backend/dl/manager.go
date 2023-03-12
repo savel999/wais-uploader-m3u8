@@ -51,9 +51,13 @@ func (m *TaskManager) RemoveTask(url string) error {
 	defer m.Unlock()
 
 	if v, ok := m.tasks[url]; ok {
-		v.Cancel()
+
+		if v.status == Canceled {
+			v.Cancel()
+			v.removeOutputFile()
+		}
+
 		v.removeTsFolder()
-		v.removeOutputFile()
 
 		delete(m.tasks, url)
 	}
@@ -125,6 +129,7 @@ func (m *TaskManager) CheckTask(task *DownloaderTask) error {
 
 func (m *TaskManager) WatchTasks() {
 	log.Println("Запуск наблюдателя по задачам")
+	defer m.Unlock()
 
 	for {
 		executingTasksCnt := 0

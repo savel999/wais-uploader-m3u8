@@ -190,6 +190,9 @@ const watchProgress = async () => {
 
               if (taskProgress.status === 6) {
                 task.isCompleted = true
+
+                await RemoveTask(taskProgress.url)
+
               }
 
               break
@@ -237,7 +240,15 @@ onMounted( async () =>  {
   path.value = await GetDirPath()
   defaultFileName.value = await GetFileName()
 
-  onAddTask('https://s5.playep.pro/content/stream/films/sherlock.s04e03_208159/hls/360/index.m3u8')
+  //onAddTask('https://s5.playep.pro/content/stream/films/sherlock.s04e03_208159/hls/360/index.m3u8')
+
+  onAddTask('https://river-6-602.rutube.ru/hls-vod/apo_r5IUOiaA8Miy-MZA6Q/1678612324/1788/0x5000c500c3d6b0cf/153f3585c65548d6a406354b63fec2d1.mp4.m3u8?i=256x144_551')
+  onAddTask('https://river-6-602.rutube.ru/hls-vod/HAr5V-GCuEtUudsWFMb9tg/1678612324/1798/0x5000c500c4c4ec6c/9a2daeb31e074e0e866868b082b9e9ef.mp4.m3u8?i=856x480_1620')
+  onAddTask('https://river-6-602.rutube.ru/hls-vod/0Ifr0z0YtPvNzsAhi662UA/1678612324/1816/0x5000c500db51716d/bbdbdee8cd5543919cdd1e78689c859c.mp4.m3u8?i=1280x720_3174')
+  onAddTask('https://river-6-602.rutube.ru/hls-vod/POr3qesMEv8ticRiAVrB4Q/1678612324/1776/0x5000c500c923de22/dd50dc18eb0e43e4ba1d0150c22ec30f.mp4.m3u8?i=1920x1080_5126')
+
+  onAddTask('https://river-3-301.rutube.ru/hls-vod/nmI63TkJDFaxLaUq3pxWVw/1678612424/1718/0x5000039b58c89c43/1b2c4c27521a444c98e78c7304078843.mp4.m3u8?i=512x288_762')
+  onAddTask('https://river-3-301.rutube.ru/hls-vod/1bPkGDL-m9VoeJCXYiqQcw/1678612424/1784/0x5000c500c99eff80/6d625d43d1604f059f50c98a4448586a.mp4.m3u8?i=1280x720_1928')
 
   watchProgress()
 })
